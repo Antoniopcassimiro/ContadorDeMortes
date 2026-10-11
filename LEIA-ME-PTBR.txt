@@ -1,0 +1,40 @@
+ELDEN RING — CONTADOR DE MORTES (Windows 10/11 x64)
+
+RECURSOS
+- Overlay sempre no topo com dois textos editáveis: mortes totais e mortes no boss.
+- Os textos padrão são “MORTES TOTAIS: {total}” e “MORTES NO BOSS: {boss}”.
+- Nos textos personalizados, use {total} para inserir o total de mortes e {boss} para inserir as mortes do boss atual. Os marcadores não diferenciam maiúsculas de minúsculas.
+- Fundo do overlay totalmente transparente: apenas os textos ficam visíveis.
+- Personalização independente da cor e do tamanho da fonte de cada texto, pelo painel de controle.
+- Painel separado para corrigir manualmente os dois números.
+- Clique em “Definir botão de morte” e aperte uma tecla ou botão do controle. A morte soma +1 nos dois contadores.
+- Clique em “Definir botão de zerar boss” e aperte uma tecla ou botão do controle. Zera somente as mortes do boss.
+- O teclado é capturado globalmente pelo Windows, inclusive com o Elden Ring em primeiro plano. Toques breves são preservados entre as verificações de estado.
+- Compatível com botões comuns de controles que funcionem via XInput (incluindo muitos controles Xbox e alguns genéricos configurados como XInput).
+- Segurar os dois atalhos juntos por 0,7 segundo desfaz uma alteração. O histórico guarda até 5 alterações, com data e hora.
+- Contadores, atalhos, textos, cores, tamanhos e histórico são salvos entre execuções.
+- Clique com o botão direito no overlay ou no ícone perto do relógio para abrir o painel.
+- Arraste o overlay com o botão esquerdo para mover sua posição.
+
+OTIMIZAÇÕES
+- Entrada consultada a cada 30 ms, mantendo resposta rápida sem uma verificação desnecessariamente frequente.
+- Reutiliza os conjuntos de estado das entradas e mantém em cache os identificadores dos botões, reduzindo alocações repetidas.
+- As fontes só são recriadas quando o tamanho realmente muda; fontes anteriores são liberadas.
+- Alterações contínuas no tamanho da fonte usam salvamento atrasado, evitando gravações repetidas no disco enquanto o valor está sendo ajustado.
+- Se a biblioteca XInput não estiver disponível, o programa deixa de repetir a chamada que falhou a cada ciclo.
+
+COMO GERAR O EXE PELO GITHUB ACTIONS
+1. Extraia este ZIP.
+2. Envie os arquivos extraídos deste ZIP para a raiz do repositório. Program.cs e DeathCounter.csproj devem ficar diretamente na raiz, sem uma pasta adicional.
+3. Preserve o arquivo .github/workflows/build.yml. Caso o GitHub não permita enviar essa pasta oculta pela interface web, use GitHub Desktop ou Git para enviar o conteúdo do repositório.
+4. Abra Actions e execute “Build Windows EXE”.
+5. Abra a execução concluída e baixe o artefato EldenRingDeathCounter-Windows-x64.
+6. Extraia o artefato e execute EldenRingDeathCounter.exe.
+
+OBSERVAÇÕES
+- O executável é publicado para Windows x64 e inclui o runtime necessário.
+- Para manter o overlay visível sobre o Elden Ring, prefira “Janela sem bordas” (borderless). Em tela cheia exclusiva, o próprio Windows/jogo pode ocultar overlays externos.
+- A captura global de teclado não bloqueia a tecla: o jogo também poderá recebê-la.
+- Botões de controle dependem de XInput; controles que usem exclusivamente DirectInput podem não ser detectados.
+- Se o contador avisar que a captura global do teclado falhou, feche-o e abra novamente; se persistir, teste executar o contador como administrador.
+- O Windows SmartScreen pode exibir um aviso porque o executável não tem assinatura digital.
